@@ -9,6 +9,7 @@ import {
 } from "./styles";
 
 const Search = () => {
+  
   return (
     <Container>
       <SearchContainer>

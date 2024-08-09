@@ -23,6 +23,11 @@ const SearchInput = styled.input`
   background-color: ${(props) => props.theme.colors.interactive[3]};
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
+  color: ${(props) => props.theme.colors.accessibleText[12]};
+
+  &::placeholder {
+    color: ${(props) => props.theme.colors.accessibleText[11]};
+  }
 `;
 
 const SearchIcon = styled.img`
@@ -69,9 +74,9 @@ const FilterIcon = styled.img`
 export {
   Container,
   FilterContainer,
+  FilterCounter,
   FilterIcon,
   SearchContainer,
   SearchIcon,
   SearchInput,
-  FilterCounter
 };
