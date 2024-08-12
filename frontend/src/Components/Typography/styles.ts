@@ -4,11 +4,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-bottom: 12px;
 `;
 
 const SpanTitle = styled.span`
+  margin: 0;
   font-size: 24px;
-  font-weight: semibold;
   background-color: #f5f5f5;
   width: 4px;
   height: 29px;
@@ -16,8 +17,9 @@ const SpanTitle = styled.span`
 `;
 
 const Title = styled.h1`
+  margin: 0;
   font-size: 24px;
-  font-weight: semibold;
+  margin: 0;
 `;
 
 export { Container, SpanTitle, Title };
