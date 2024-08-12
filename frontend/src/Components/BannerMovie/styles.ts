@@ -7,44 +7,54 @@ const Card = styled.div`
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.accessibleText[12]};
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+  }
+
+  cursor: pointer;
 `;
 
 const CardImage = styled.img`
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 const HighlightTag = styled.div`
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 20px;
   font-weight: bold;
   display: flex;
   align-items: center;
+  width: 155px;
   gap: 5px;
 `;
 
 const Rating = styled.div`
+  margin-right: 5px;
+  font-size: 16px;
+  color: ${({ theme }) => theme.colors.accessibleText[12]};
   display: flex;
   align-items: center;
-  gap: 5px;
-  position: absolute;
-  top: 40px;
-  left: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
-  padding: 5px 10px;
-  font-size: 16px;
 `;
 
 const CardTitle = styled.h3`
@@ -57,22 +67,31 @@ const MovieDetails = styled.div`
   font-size: 12px;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
 `;
 
 const Description = styled.p`
   font-size: 14px;
   margin-bottom: 10px;
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 `;
 
 const Button = styled.button`
   border: none;
-  width: 184px;
   height: 40px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold;
   transition: background-color 0.3s;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
   padding: 5px 10px;
   display: flex;
   align-items: center;
@@ -80,12 +99,14 @@ const Button = styled.button`
   color: #eee;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.5);
   }
+
+  margin-top: 48px;
 `;
 
 const CardContent = styled.div`
-  padding: 15px;
+  padding: 48px;
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.8) 10%,
@@ -94,7 +115,6 @@ const CardContent = styled.div`
   );
   position: absolute;
   bottom: 0;
-  width: 100%;
 `;
 
 const StarIcon = styled.img`

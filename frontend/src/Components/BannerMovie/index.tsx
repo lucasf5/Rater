@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { Movie } from "../../@types/movie";
 import {
   Button,
   Card,
@@ -11,29 +13,27 @@ import {
   StarIcon,
 } from "./styles";
 
-const BannerMovie = () => {
+const BannerMovie = (movie: Movie) => {
+  const { backdrop_path, title, overview, vote_average } = movie;
+  const navigate = useNavigate();
   return (
-    <Card>
-      <CardImage src="https://link-da-imagem.jpg" alt="Deadpool & Wolverine" />
-      <HighlightTag>
-        <img src="/svgs/flame.svg" alt="Play" />
-        Em destaque
-      </HighlightTag>
-      <Rating>
-        <StarIcon src="/svgs/star.svg" />
-        <span>8.2</span>
-      </Rating>
+    <Card onClick={() => navigate(`/movie/${movie.id}`)}>
+      <CardImage src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} />
+
       <CardContent>
-        <CardTitle>Deadpool & Wolverine</CardTitle>
+        <HighlightTag>
+          <img src="/svgs/flame.svg" alt="Play" />
+          Em destaque
+        </HighlightTag>
+        <CardTitle>{title}</CardTitle>
         <MovieDetails>
-          120 min | 2h 8m | Ação, Aventura | Setembro 2024
+          <Rating>
+            <StarIcon src="/svgs/star.svg" />
+            <span>{vote_average}</span>
+          </Rating>
+          | 120 min | 2h 8m | Ação, Aventura | Setembro 2024
         </MovieDetails>
-        <Description>
-          Deadpool recebe uma oferta da Autoridade de Variância Temporal para se
-          juntar ao Universo Cinematográfico Marvel, mas as coisas não saem como
-          o esperado, resultando em uma aliança com o Wolverine para salvar seu
-          universo da extinção.
-        </Description>
+        <Description>{overview}</Description>
         <Button>
           <p>Assistir ao trailer</p>
           <img src="/svgs/play.svg" alt="Play" />
