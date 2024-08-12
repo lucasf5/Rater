@@ -1,16 +1,18 @@
-import BannerMovie from "../../Components/BannerMovie";
-import CardMovie from "../../Components/CardMovie";
-import Header from "../../Components/Header";
-import TitleCards from "../../Components/Typography";
+import MovieCarousel from "../../components/MostPopularCarousel";
+import MoviesWatched from "../../components/MoviesWatched";
+import PeopleCarousel from "../../components/PeopleCarousel";
+import PopularMovies from "../../components/PopularMovies";
+import RecommendationCarousel from "../../components/RecommendationCarousel";
 import { Container } from "./styles";
 
 const Home = () => {
   return (
     <Container>
-      <Header />
-      <BannerMovie />
-      <CardMovie />
-      <TitleCards title="Em alta" /> 
+      <PopularMovies />
+      <MovieCarousel />
+      <MoviesWatched />
+      <RecommendationCarousel isLoged={false} />
+      <PeopleCarousel />
     </Container>
   );
 };
