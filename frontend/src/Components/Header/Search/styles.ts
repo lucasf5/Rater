@@ -12,18 +12,20 @@ const SearchContainer = styled.div`
   border-radius: 5px;
   padding: 5px;
   border-radius: 25px;
+  width: 317px;
+
   background-color: ${(props) => props.theme.colors.interactive[3]};
 `;
 
 const SearchInput = styled.input`
   border: none;
   outline: none;
-  width: 317px;
   height: 35px;
   background-color: ${(props) => props.theme.colors.interactive[3]};
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
   color: ${(props) => props.theme.colors.accessibleText[12]};
+  width: 317px;
 
   &::placeholder {
     color: ${(props) => props.theme.colors.accessibleText[11]};
@@ -71,11 +73,27 @@ const FilterIcon = styled.img`
   margin-right: 10px;
 `;
 
+const FilterList = styled.div`
+  width: 377px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1;
+  top: 100px;
+  background-color: ${(props) => props.theme.colors.interactive[3]};
+  border-radius: 5px;
+  padding: 10px;
+
+  overflow-y: auto;
+  max-height: 500px;
+`;
+
 export {
   Container,
   FilterContainer,
   FilterCounter,
   FilterIcon,
+  FilterList,
   SearchContainer,
   SearchIcon,
   SearchInput,
