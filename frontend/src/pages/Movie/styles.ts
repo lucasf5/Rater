@@ -1,36 +1,41 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  background-color: #111;
-  color: #fff;
   font-family: Arial, sans-serif;
 `;
 
 const Header = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
   padding: 20px;
-  background-size: cover;
-  background-position: center;
 `;
 
 const Poster = styled.img`
-  width: 300px;
+  width: 100%;
+  max-width: 1392px;
+  height: 476px;
   border-radius: 10px;
-  margin-right: 20px;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 20px;
 `;
 
 const MovieInfo = styled.div`
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1392px;
+  padding: 20px;
+  border-radius: 10px;
 `;
 
 const Title = styled.h1`
   font-size: 2.5rem;
-  margin-bottom: 10px;
 `;
 
 const Overview = styled.p`
-  font-size: 1rem;
+  font-size: 20px;
   margin-bottom: 20px;
 `;
 
@@ -60,8 +65,13 @@ const CastMember = styled.div`
 `;
 
 const CastImage = styled.img`
-  width: 100%;
+  width: 268.8px;
+  height: 253.67px;
   border-radius: 10px;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 10px;
+  cursor: pointer;
 `;
 
 const CastName = styled.p`
@@ -98,6 +108,41 @@ const SimilarMovieRating = styled.p`
   color: #ccc;
 `;
 
+const GenreList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
+
+const Subtitle = styled.h2`
+  display: flex;
+  gap: 10px;
+`;
+
+const VoteCount = styled.p`
+  color: ${(props) => props.theme.colors.accessibleText[11]};
+  font-size: 14px;
+  margin-right: 10px;
+`;
+
+const Star = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 1.25rem;
+`;
+
+const ContainerTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const Link = styled.a`
+  text-decoration: none;
+  color: inherit;
+`;
+
 export {
   CastCharacter,
   CastImage,
@@ -105,7 +150,9 @@ export {
   CastMember,
   CastName,
   Container,
+  ContainerTitle,
   Details,
+  GenreList,
   Header,
   MovieInfo,
   Overview,
@@ -117,5 +164,9 @@ export {
   SimilarMovieRating,
   SimilarMovieTitle,
   SimilarMoviesList,
+  Star,
+  Subtitle,
   Title,
+  VoteCount,
+  Link,
 };

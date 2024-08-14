@@ -16,7 +16,7 @@ const CardMovie = (movie: Movie) => {
   };
   return (
     <Card
-      src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+      src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
       popular={movie.popular}
       onClick={handleClick}
     >

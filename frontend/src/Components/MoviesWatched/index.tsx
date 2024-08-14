@@ -1,4 +1,5 @@
 import { FaFilm } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -7,7 +8,12 @@ import { Swiper } from "swiper/react";
 import TitleCards from "../Typography";
 
 const MoviesWatched = () => {
-  const hasMovies = false; // Simulando a ausência de filmes para replicar o layout da imagem
+  const hasMovies = false;
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
 
   return (
     <MovieCarouselContainer>
@@ -21,7 +27,7 @@ const MoviesWatched = () => {
           <FaFilm size={48} />
           <Message>Ops, nenhum filme avaliado ainda.</Message>
           <SubMessage>Que tal adicionar um?</SubMessage>
-          <LoginButton>Fazer login</LoginButton>
+          <LoginButton onClick={handleLogin}>Fazer login</LoginButton>
         </EmptyState>
       )}
     </MovieCarouselContainer>
