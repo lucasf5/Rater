@@ -1,3 +1,4 @@
+import LoginForm from "../../components/Login";
 import MovieCarousel from "../../components/MostPopularCarousel";
 import MoviesWatched from "../../components/MoviesWatched";
 import PeopleCarousel from "../../components/PeopleCarousel";
@@ -13,6 +14,7 @@ const Home = () => {
       <MoviesWatched />
       <RecommendationCarousel isLoged={false} />
       <PeopleCarousel />
+      <LoginForm />
     </Container>
   );
 };

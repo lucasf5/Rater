@@ -18,7 +18,7 @@ const BannerMovie = (movie: Movie) => {
   const navigate = useNavigate();
   return (
     <Card onClick={() => navigate(`/movie/${movie.id}`)}>
-      <CardImage src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} />
+      <CardImage src={`https://image.tmdb.org/t/p/original${backdrop_path}`} />
 
       <CardContent>
         <HighlightTag>

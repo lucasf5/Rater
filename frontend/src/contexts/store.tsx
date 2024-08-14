@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { Actor } from "../@types/actor";
+import { BackdropsResponse } from "../@types/backdrop";
 import Genres from "../@types/genres";
 import { Movie } from "../@types/movie";
 
@@ -25,16 +26,31 @@ type Store = {
 
   currentMovie: Movie | null;
   setCurrentMovie: (movie: Movie) => void;
-  currentActor: Actor | null;
-  setCurrentActor: (actor: Actor) => void;
-  isModalOpen: boolean;
-  setModalOpen: (isOpen: boolean) => void;
-  isSidebarVisible: boolean;
-  setSidebarVisible: (isVisible: boolean) => void;
-  notificationMessage: string;
-  setNotificationMessage: (message: string) => void;
+  currentCast: Actor[];
+  setCurrentCast: (actor: Actor[]) => void;
+  similarMovies: Movie[];
+  setSimilarMovies: (movies: Movie[]) => void;
+  genresMovies: Genres[];
+  setGenresMovies: (genres: Genres[]) => void;
+  images: BackdropsResponse;
+  setImages: (images: BackdropsResponse) => void;
+
+  currentPerson: Actor | null;
+  setCurrentPerson: (person: Actor) => void;
+
   loading: boolean;
-  setLoading: (isLoading: boolean) => void;
+  setLoading: (value: boolean) => void;
+
+  moviesByActor: Movie[];
+  setMoviesByActor: (movies: Movie[]) => void;
+
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
+  itemsPerPage: number;
+  setItemsPerPage: (items: number) => void;
+
+  userLogged: boolean;
+  setUserLogged: (value: boolean) => void;
 };
 
 const useStore = create<Store>((set) => ({
@@ -64,16 +80,30 @@ const useStore = create<Store>((set) => ({
 
   currentMovie: null,
   setCurrentMovie: (movie) => set({ currentMovie: movie }),
-  currentActor: null,
-  setCurrentActor: (actor) => set({ currentActor: actor }),
-  isModalOpen: false,
-  setModalOpen: (isOpen) => set({ isModalOpen: isOpen }),
-  isSidebarVisible: true,
-  setSidebarVisible: (isVisible) => set({ isSidebarVisible: isVisible }),
-  notificationMessage: "",
-  setNotificationMessage: (message) => set({ notificationMessage: message }),
+  similarMovies: [],
+  setSimilarMovies: (movies) => set({ similarMovies: movies }),
+  currentCast: [],
+  setCurrentCast: (cast) => set({ currentCast: cast }),
+  genresMovies: [],
+  setGenresMovies: (genres) => set({ genresMovies: genres }),
+  images: { backdrops: [] },
+  setImages: (images) => set({ images }),
+
+  currentPerson: null,
+  setCurrentPerson: (person) => set({ currentPerson: person }),
   loading: false,
-  setLoading: (isLoading) => set({ loading: isLoading }),
+  setLoading: (value) => set({ loading: value }),
+
+  moviesByActor: [],
+  setMoviesByActor: (movies) => set({ moviesByActor: movies }),
+
+  currentPage: 1,
+  setCurrentPage: (page) => set({ currentPage: page }),
+  itemsPerPage: 4,
+  setItemsPerPage: (items) => set({ itemsPerPage: items }),
+
+  userLogged: false,
+  setUserLogged: (value) => set({ userLogged: value }),
 }));
 
 export default useStore;

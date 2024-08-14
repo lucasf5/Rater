@@ -1,147 +1,149 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Genres from "../../@types/genres";
 import { api } from "../../api";
+import CardMovie from "../../components/CardMovie";
+import { StarIcon } from "../../components/CardMovie/styles";
+import { GenreButton } from "../../components/Header/Search/components/Filters/styles";
+import TitleCards from "../../components/Typography";
 import useStore from "../../contexts/store";
 import {
   CastCharacter,
   CastImage,
-  CastList,
-  CastMember,
   CastName,
   Container,
+  ContainerTitle,
   Details,
+  GenreList,
   Header,
+  Link,
   MovieInfo,
   Overview,
   Poster,
   Section,
-  SectionTitle,
-  SimilarMovie,
-  SimilarMovieImage,
-  SimilarMovieRating,
-  SimilarMovieTitle,
-  SimilarMoviesList,
+  Star,
+  Subtitle,
   Title,
+  VoteCount,
 } from "./styles";
 
 const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();
-
   const {
-    setMovies,
-    setPeople,
-    setPopularMovies,
+    currentMovie,
     setCurrentMovie,
-    setLoading,
-    setNotificationMessage,
-    movies,
-    people,
-    popularMovies,
-    loading,
-  } = useStore((state) => ({
-    setMovies: state.setMovies,
-    setPeople: state.setPeople,
-    setPopularMovies: state.setPopularMovies,
-    setCurrentMovie: state.setCurrentMovie,
-    setLoading: state.setLoading,
-    setNotificationMessage: state.setNotificationMessage,
-    movies: state.movies,
-    people: state.people,
-    popularMovies: state.popularMovies,
-    loading: state.loading,
-  }));
+    similarMovies,
+    setSimilarMovies,
+    currentCast,
+    setCurrentCast,
+    genresMovies,
+    setGenresMovies,
+  } = useStore();
 
   useEffect(() => {
-    const fetchMovieDetails = async () => {
-      if (!id) return;
-      setLoading(true);
-      try {
-        const movieDetails = await api.details(id);
-        setMovies([movieDetails]);
-        setCurrentMovie(movieDetails);
+    if (!id) return;
+    api.getDetailsMovie(id).then((response) => {
+      setCurrentMovie(response);
+    });
+    api.getSimilarMovies(id).then((response) => {
+      setSimilarMovies(response.results);
+    });
+    api.getCast(id).then((response) => {
+      setCurrentCast(response.cast);
+    });
+    api.getGenres().then((response) => {
+      const genres = currentMovie?.genres.map((genre) =>
+        response.genres.find((item: Genres) => item.id === genre.id)
+      );
 
-        const castDetails = await api.getDetailsPeople(id);
-        setPeople(castDetails.cast);
-
-        const similarMoviesData = await api.discover(movieDetails.genres[0].id);
-        setPopularMovies(similarMoviesData.results);
-      } catch (error) {
-        setNotificationMessage("Erro ao carregar os detalhes do filme.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMovieDetails();
+      setGenresMovies(genres as Genres[]);
+    });
   }, [
     id,
-    setMovies,
-    setPeople,
-    setPopularMovies,
     setCurrentMovie,
-    setLoading,
-    setNotificationMessage,
+    setSimilarMovies,
+    setCurrentCast,
+    currentMovie,
+    setGenresMovies,
   ]);
-
-  if (loading) return <div>Carregando...</div>;
-
-  if (!movies.length) return <div>Nenhum filme encontrado.</div>;
-
-  const movie = movies[0];
 
   return (
     <Container>
-      <Header
-        style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
-        }}
-      >
+      <Header>
         <Poster
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt={movie.title}
+          src={`https://image.tmdb.org/t/p/original${currentMovie?.backdrop_path}`}
+          alt={currentMovie?.title}
         />
         <MovieInfo>
-          <Title>{movie.title}</Title>
-          <Overview>{movie.overview}</Overview>
+          <GenreList>
+            {genresMovies?.map((genre) => (
+              <GenreButton key={genre?.id} active={false}>
+                {genre?.name}
+              </GenreButton>
+            ))}
+          </GenreList>
+          <ContainerTitle>
+            <Title>{currentMovie?.title}</Title>
+            <Subtitle>
+              <Star>
+                <StarIcon src="/svgs/star.svg" />
+                <span>{currentMovie?.vote_average.toFixed(1)}</span>
+              </Star>
+
+              <VoteCount>{` | ${currentMovie?.vote_count}`}</VoteCount>
+            </Subtitle>
+          </ContainerTitle>
           <Details>
-            <span>{movie.release_date}</span> | <span>{movie.runtime} min</span>{" "}
-            | <span>Nota: {movie.vote_average}</span>
+            {currentMovie?.runtime} min •{" "}
+            {currentMovie?.release_date && new Date(currentMovie.release_date).getFullYear()} •
+            {currentMovie?.adult ? " 18" : " Livre"}
           </Details>
+          <Overview>{currentMovie?.overview}</Overview>
         </MovieInfo>
       </Header>
-
       <Section>
-        <SectionTitle>Elenco Principal</SectionTitle>
-        <CastList>
-          {people.slice(0, 6).map((member) => (
-            <CastMember key={member.id}>
-              <CastImage
-                src={`https://image.tmdb.org/t/p/w200${member.profile_path}`}
-                alt={member.name}
-              />
-              <CastName>{member.name}</CastName>
-              <CastCharacter>{member.character}</CastCharacter>
-            </CastMember>
+        <TitleCards title="Elenco principal" />
+        <Swiper
+          modules={[Navigation, Pagination]}
+          slidesPerView={5}
+          spaceBetween={12}
+          navigation
+          loop={true}
+        >
+          {currentCast.map((cast) => (
+            <SwiperSlide key={cast.id}>
+              <Link href={`/actor/${cast.id}`}>
+                <CastImage
+                  src={`https://image.tmdb.org/t/p/original${cast.profile_path}`}
+                  alt={cast.name}
+                />
+                <CastName>{cast.name}</CastName>
+                <CastCharacter>{cast.character}</CastCharacter>
+              </Link>
+            </SwiperSlide>
           ))}
-        </CastList>
+        </Swiper>
       </Section>
-
       <Section>
-        <SectionTitle>Filmes Semelhantes</SectionTitle>
-        <SimilarMoviesList>
-          {popularMovies.slice(0, 4).map((movie) => (
-            <SimilarMovie key={movie.id}>
-              <SimilarMovieImage
-                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                alt={movie.title}
-              />
-              <SimilarMovieTitle>{movie.title}</SimilarMovieTitle>
-              <SimilarMovieRating>
-                Nota: {movie.vote_average}
-              </SimilarMovieRating>
-            </SimilarMovie>
+        <TitleCards title="Semelhantes" />
+        <Swiper
+          modules={[Navigation, Pagination]}
+          slidesPerView={4}
+          spaceBetween={48}
+          navigation
+          loop={true}
+        >
+          {similarMovies.map((movie) => (
+            <SwiperSlide key={movie.id}>
+              <CardMovie {...movie} popular={true} />
+            </SwiperSlide>
           ))}
-        </SimilarMoviesList>
+        </Swiper>
       </Section>
     </Container>
   );

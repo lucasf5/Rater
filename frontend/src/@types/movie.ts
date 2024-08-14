@@ -1,4 +1,5 @@
 export interface Movie {
+  character: ReactNode;
   adult: boolean;
   backdrop_path: string;
   belongs_to_collection?: {
@@ -44,4 +45,5 @@ export interface Movie {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  popular: boolean;
 }
