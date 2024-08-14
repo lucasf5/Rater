@@ -73,5 +73,40 @@ export const api = {
       options
     );
     return response.data;
-  }
+  },
+  getDetailsMovie: async (id: string) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}?language=pt-BR`,
+      options
+    );
+    return response.data;
+  },
+  getSimilarMovies: async (id: string) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/similar?language=pt-BR`,
+      options
+    );
+    return response.data;
+  },
+  getCast: async (id: string) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/credits?language=pt-BR`,
+      options
+    );
+    return response.data;
+  },
+  getImages: async (id: string) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/images?language=pt-BR`,
+      options
+    );
+    return response.data;
+  },
+  getMoviesByActor: async (id: string) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/person/${id}/movie_credits?language=pt-BR`,
+      options
+    );
+    return response.data;
+  },
 };
