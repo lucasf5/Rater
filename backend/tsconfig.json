@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["./src/@types", "./node_modules/@types"],
+    /* Language and Environment */
+    "target": "es2020",
+
+    /* Modules */
+    "module": "commonjs",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+    "skipLibCheck": true
+  }
+}
