@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build": "echo 'No build command for the root'",
+    "start": "echo 'No start command for the root'"
+  }
+}

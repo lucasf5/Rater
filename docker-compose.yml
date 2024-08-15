@@ -9,7 +9,7 @@ services:
     environment:
       DATABASE_URL: postgres://postgres1:postgres1@db:5432/postgres
     ports:
-      - "3000:3000"
+      - "3001:3000" # Port mapping adjusted for backend
     depends_on:
       - db
     volumes:
