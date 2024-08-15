@@ -19,8 +19,8 @@ export const loginController = async (
 
   reply.setCookie("token", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    secure: false, // Deve ser false em localhost
+    sameSite: "lax", // Use lax ou none
     path: "/",
     maxAge: 3600,
   });

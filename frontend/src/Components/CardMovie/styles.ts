@@ -21,11 +21,15 @@ const Card = styled.div<Image>`
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-
   opacity: 0.8;
 
   &:hover {
     opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 284px;
   }
 `;
 
@@ -47,6 +51,10 @@ const CardTitle = styled.h3`
   margin: 10px 0;
   font-size: 24px;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 const Button = styled.button`
@@ -63,12 +71,15 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 12px;
-
   color: #eee;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  @media (max-width: 768px) {
+    height: 50px;
+    font-size: 14px;
   }
 `;
 
@@ -77,6 +88,10 @@ const CardContent = styled.div`
   flex-direction: column;
   position: absolute;
   bottom: 20px;
+
+  @media (max-width: 768px) {
+    padding: 12px;
+  }
 `;
 
 const StarIcon = styled.img`

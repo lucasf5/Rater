@@ -4,6 +4,7 @@ import MoviesWatched from "../../components/MoviesWatched";
 import PeopleCarousel from "../../components/PeopleCarousel";
 import PopularMovies from "../../components/PopularMovies";
 import RecommendationCarousel from "../../components/RecommendationCarousel";
+import Register from "../../components/Register";
 import { Container } from "./styles";
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
       <MoviesWatched />
       <RecommendationCarousel isLoged={false} />
       <PeopleCarousel />
+      <Register />
       <LoginForm />
     </Container>
   );

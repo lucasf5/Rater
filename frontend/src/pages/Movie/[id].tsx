@@ -100,8 +100,9 @@ const MovieDetails = () => {
           </ContainerTitle>
           <Details>
             {currentMovie?.runtime} min •{" "}
-            {currentMovie?.release_date && new Date(currentMovie.release_date).getFullYear()} •
-            {currentMovie?.adult ? " 18" : " Livre"}
+            {currentMovie?.release_date &&
+              new Date(currentMovie.release_date).getFullYear()}{" "}
+            •{currentMovie?.adult ? " 18" : " Livre"}
           </Details>
           <Overview>{currentMovie?.overview}</Overview>
         </MovieInfo>
@@ -114,6 +115,24 @@ const MovieDetails = () => {
           spaceBetween={12}
           navigation
           loop={true}
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 8,
+            },
+            480: {
+              slidesPerView: 2,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 12,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 12,
+            },
+          }}
         >
           {currentCast.map((cast) => (
             <SwiperSlide key={cast.id}>
@@ -134,9 +153,27 @@ const MovieDetails = () => {
         <Swiper
           modules={[Navigation, Pagination]}
           slidesPerView={4}
-          spaceBetween={48}
+          spaceBetween={68}
           navigation
           loop={true}
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 8,
+            },
+            480: {
+              slidesPerView: 2,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 12,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 12,
+            },
+          }}
         >
           {similarMovies.map((movie) => (
             <SwiperSlide key={movie.id}>

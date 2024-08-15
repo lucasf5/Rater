@@ -18,8 +18,8 @@ const Card = styled.div`
   background-repeat: no-repeat;
 
   @media (max-width: 768px) {
-    width: 100%;
-    height: 100%;
+    max-width: 320px;
+    height: 284px;
   }
 
   cursor: pointer;
@@ -96,7 +96,7 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #eee;
+  color: ${({ theme }) => theme.colors.accessibleText[12]};
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.5);

@@ -3,11 +3,20 @@ import "swiper/swiper-bundle.min.css";
 
 const MovieCarouselContainer = styled.div`
   padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 `;
 
 const Title = styled.h2`
   color: white;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
 `;
 
 const Card = styled.div`
@@ -16,25 +25,47 @@ const Card = styled.div`
   overflow: hidden;
   text-align: center;
   color: white;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    border-radius: 8px;
+  }
 `;
 
 const CardImage = styled.img`
   width: 100%;
   height: auto;
   border-bottom: 1px solid #444;
+
+  @media (max-width: 768px) {
+    border-bottom: 1px solid #333;
+  }
 `;
 
 const CardContent = styled.div`
   padding: 10px;
+
+  @media (max-width: 768px) {
+    padding: 8px;
+  }
 `;
 
 const MovieTitle = styled.h3`
   font-size: 18px;
   margin: 10px 0;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin: 8px 0;
+  }
 `;
 
 const MovieRating = styled.p`
   font-size: 16px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const TrailerButton = styled.a`
@@ -48,6 +79,11 @@ const TrailerButton = styled.a`
 
   &:hover {
     background-color: #555;
+  }
+
+  @media (max-width: 768px) {
+    padding: 8px;
+    font-size: 14px;
   }
 `;
 

@@ -1,4 +1,3 @@
-// src/components/MovieList/styles.ts
 import styled from "styled-components";
 
 export const MovieListContainer = styled.div``;
@@ -8,6 +7,11 @@ export const MovieGrid = styled.div`
   flex-wrap: wrap;
   gap: 24px 16px;
   margin-top: 24px;
+
+  @media screen and (max-width: 768px) {
+    gap: 16px 8px;
+    margin-top: 16px;
+  }
 `;
 
 export const MovieCard = styled.div`
@@ -15,11 +19,22 @@ export const MovieCard = styled.div`
   height: 94px;
   display: flex;
   gap: 8px;
+
   img {
     width: 64px;
     height: 86px;
     object-fit: cover;
     border-radius: 5px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: auto;
+
+    img {
+      width: 48px;
+      height: 64px;
+    }
   }
 `;
 
@@ -34,6 +49,12 @@ export const MovieInfo = styled.div`
     margin: 0;
     font-size: 0.8rem;
     color: ${({ theme }) => theme.colors.accessibleText[11]};
+  }
+
+  @media screen and (max-width: 768px) {
+    p {
+      font-size: 0.75rem;
+    }
   }
 `;
 
