@@ -1,10 +1,16 @@
-import axios from "axios";
 import Filters from "../@types/filters";
+
+import axios from "axios";
+import { wrapper } from "axios-cookiejar-support";
+import { CookieJar } from "tough-cookie";
+
+const jar = new CookieJar();
+const client = wrapper(axios.create({ jar }));
 
 const options = {
   method: "GET",
   headers: {
-    accept: "application/json",
+    accept: "*/*",
     Authorization:
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MzNiZWQwOTEzMmZiZmU3ZWU0ODIxNzkyMTIwMGM3MCIsIm5iZiI6MTcyMzE0OTE2NS4xMTM2MTQsInN1YiI6IjY2YjUyNmY2ZjIyNjI1ZTE1MTllOTk2OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2sRk9MSkQH3AeJ5Hl5eb8xHNJ2kCzrjbLXDdYPY5ed4",
   },
@@ -106,6 +112,70 @@ export const api = {
     const response = await axios.get(
       `https://api.themoviedb.org/3/person/${id}/movie_credits?language=pt-BR`,
       options
+    );
+    return response.data;
+  },
+  login: async (email: string, password: string) => {
+    const response = await client.post(
+      "http://localhost:3000/login",
+      { email, password },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  },
+  register: async (email: string, password: string, fullname: string) => {
+    const response = await client.post(
+      "http://localhost:3000/register",
+      { email, password, fullname },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  },
+  profile: async () => {
+    const response = await client.get("http://localhost:3000/profile", {
+      withCredentials: true,
+    });
+    return response.data;
+  },
+  updateProfile: async (fullname: string, username: string) => {
+    const response = await client.put(
+      "http://localhost:3000/user",
+      { fullname, username },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  },
+  deleteProfile: async () => {
+    const response = await axios.delete("http://localhost:3000/user", {
+      withCredentials: true,
+    });
+    return response.data;
+  },
+  addMoviesToAccountUser: async (movieId: string) => {
+    const response = await axios.post(
+      "http://localhost:3000/addMovies",
+      { movieId },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
     );
     return response.data;
   },

@@ -9,12 +9,18 @@ const Container = styled.div`
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
-  border-radius: 5px;
-  padding: 5px;
   border-radius: 25px;
+  padding: 5px;
   width: 317px;
-
   background-color: ${(props) => props.theme.colors.interactive[3]};
+
+  @media (max-width: 768px) {
+    max-width: 300px;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 250px;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -25,7 +31,7 @@ const SearchInput = styled.input`
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
   color: ${(props) => props.theme.colors.accessibleText[12]};
-  width: 317px;
+  width: 100%;
 
   &::placeholder {
     color: ${(props) => props.theme.colors.accessibleText[11]};
@@ -39,15 +45,24 @@ const SearchIcon = styled.img`
   background-color: ${(props) => props.theme.colors.interactive[5]};
   border-radius: 50%;
   margin-right: 10px;
+
+  @media (max-width: 768px) {
+    width: 35px;
+    height: 35px;
+  }
 `;
 
 const FilterContainer = styled.div`
   display: flex;
   align-items: center;
-  border-radius: 5px;
-  padding: 5px;
   border-radius: 25px;
+  padding: 5px;
   position: relative;
+
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    max-width: 300px;
+  }
 `;
 
 const FilterCounter = styled.div`
@@ -62,6 +77,12 @@ const FilterCounter = styled.div`
   font-size: 12px;
   position: absolute;
   top: -4px;
+
+  @media (max-width: 768px) {
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+  }
 `;
 
 const FilterIcon = styled.img`
@@ -71,6 +92,11 @@ const FilterIcon = styled.img`
   background-color: ${(props) => props.theme.colors.interactive[5]};
   border-radius: 50%;
   margin-right: 10px;
+
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const FilterList = styled.div`
@@ -83,9 +109,19 @@ const FilterList = styled.div`
   background-color: ${(props) => props.theme.colors.interactive[3]};
   border-radius: 5px;
   padding: 10px;
-
   overflow-y: auto;
   max-height: 500px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 300px;
+    top: 80px;
+  }
+
+  @media (max-width: 480px) {
+    width: 80%;
+    top: 60px;
+  }
 `;
 
 export {

@@ -3,6 +3,7 @@ import { Actor } from "../@types/actor";
 import { BackdropsResponse } from "../@types/backdrop";
 import Genres from "../@types/genres";
 import { Movie } from "../@types/movie";
+import { User } from "../@types/user";
 
 type Store = {
   selectedGenres: number[];
@@ -51,6 +52,18 @@ type Store = {
 
   userLogged: boolean;
   setUserLogged: (value: boolean) => void;
+
+  userInfos: User;
+  setUserInfos: (user: User) => void;
+
+  modalLoginOpen: boolean;
+  setModalLoginOpen: (value: boolean) => void;
+
+  modalRegisterOpen: boolean;
+  setModalRegisterOpen: (value: boolean) => void;
+
+  modalOpen: boolean;
+  setModalOpen: (value: boolean) => void;
 };
 
 const useStore = create<Store>((set) => ({
@@ -104,6 +117,18 @@ const useStore = create<Store>((set) => ({
 
   userLogged: false,
   setUserLogged: (value) => set({ userLogged: value }),
+
+  userInfos: {} as User,
+  setUserInfos: (user) => set({ userInfos: user }),
+
+  modalLoginOpen: false,
+  setModalLoginOpen: (value) => set({ modalLoginOpen: value }),
+
+  modalRegisterOpen: false,
+  setModalRegisterOpen: (value) => set({ modalRegisterOpen: value }),
+
+  modalOpen: false,
+  setModalOpen: (value) => set({ modalOpen: value }),
 }));
 
 export default useStore;

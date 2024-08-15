@@ -19,7 +19,31 @@ const MoviesWatched = () => {
     <MovieCarouselContainer>
       <TitleCards title="Filmes assistidos" />
       {hasMovies ? (
-        <Swiper modules={[Navigation]} slidesPerView={4} navigation loop>
+        <Swiper
+          modules={[Navigation]}
+          slidesPerView={4}
+          spaceBetween={12}
+          navigation
+          loop
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 8,
+            },
+            480: {
+              slidesPerView: 2,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 12,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 12,
+            },
+          }}
+        >
           {/* Conteúdo do carrossel de filmes */}
         </Swiper>
       ) : (
@@ -36,7 +60,8 @@ const MoviesWatched = () => {
 
 const MovieCarouselContainer = styled.div`
   width: 100%;
-  padding: 2rem;
+  background-color: ${({ theme }) =>
+    theme.colors.background[1]}; /* Ajuste a cor de fundo conforme o tema */
 `;
 
 const EmptyState = styled.div`
@@ -51,25 +76,31 @@ const EmptyState = styled.div`
 const Message = styled.p`
   font-size: 1.2rem;
   margin-top: 1rem;
+  color: ${({ theme }) =>
+    theme.colors.accessibleText[11]}; /* Ajuste a cor conforme o tema */
 `;
 
 const SubMessage = styled.p`
   margin-top: 0.5rem;
-  color: #aaa; /* Cor do texto secundário */
+  color: ${({ theme }) =>
+    theme.colors.accessibleText[12]}; /* Ajuste a cor conforme o tema */
 `;
 
 const LoginButton = styled.button`
   margin-top: 2rem;
   padding: 0.5rem 1.5rem;
   font-size: 1rem;
-  background-color: #333; /* Cor do botão */
+  background-color: ${({ theme }) =>
+    theme.colors.solid[10]}; /* Ajuste a cor conforme o tema */
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 
   &:hover {
-    background-color: #555; /* Cor do botão ao passar o mouse */
+    background-color: ${({ theme }) =>
+      theme.colors
+        .solid[9]}; /* Ajuste a cor ao passar o mouse conforme o tema */
   }
 `;
 

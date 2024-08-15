@@ -18,11 +18,8 @@ const RecommendationCarousel = ({ isLoged }: { isLoged: boolean }) => {
         <TitleCards title="Recomendados" />
         {!isLoged && (
           <p>
-            Faça{" "}
-            <Link hrefLang="/login" to="/login">
-              login
-            </Link>{" "}
-            para ver mais filmes recomendados
+            Faça <Link to="/login">login</Link> para ver mais filmes
+            recomendados
           </p>
         )}
       </Container>
@@ -32,8 +29,26 @@ const RecommendationCarousel = ({ isLoged }: { isLoged: boolean }) => {
         spaceBetween={12}
         navigation
         loop={true}
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 8,
+          },
+          480: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 12,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 12,
+          },
+        }}
       >
-        {popularMovies.slice(4).map((movie, index) => (
+        {popularMovies.slice(8).map((movie, index) => (
           <SwiperSlide key={index}>
             <MovieCard {...movie} popular={true} />
           </SwiperSlide>
@@ -48,18 +63,21 @@ const MovieCarouselContainer = styled.div`
   width: 100%;
   padding: 0 1rem;
   position: relative;
+
+  .swiper-slide > div {
+    height: 284px;
+    display: flex;
+  }
+
   .swiper-button-prev,
   .swiper-button-next {
     color: ${({ theme }) => theme.colors.accessibleText[12]};
-  }
-
-  .Card {
-    width: 100px;
   }
 `;
 
 const Container = styled.div`
   display: flex;
+  align-items: center;
 
   p {
     margin: 0;
@@ -67,11 +85,19 @@ const Container = styled.div`
     margin-left: 1rem;
     font-size: 16px;
     color: ${({ theme }) => theme.colors.accessibleText[11]};
-    display: block;
 
     a {
       color: ${({ theme }) => theme.colors.accessibleText[12]};
       text-decoration: underline;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    p {
+      margin-left: 0;
     }
   }
 `;

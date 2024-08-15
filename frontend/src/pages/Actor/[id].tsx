@@ -8,8 +8,8 @@ const ActorDetails = () => {
 
   return (
     <PageContainer>
-      <MovieList personId={id} />
-      <PersonDetails personId={id} />
+      <MovieList personId={id || ""} />
+      <PersonDetails personId={id || ""} />
     </PageContainer>
   );
 };
@@ -20,4 +20,20 @@ const PageContainer = styled.div`
   display: grid;
   grid-template-columns: 3fr 1fr;
   gap: 20px;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "details"
+      "movies";
+  }
+
+  /* Aplica a área específica para cada componente */
+  & > :first-child {
+    grid-area: movies;
+  }
+
+  & > :nth-child(2) {
+    grid-area: details;
+  }
 `;

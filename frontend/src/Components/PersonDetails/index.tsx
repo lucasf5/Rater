@@ -63,26 +63,44 @@ const PersonContainer = styled.div`
   flex-direction: column;
   padding: 20px;
   border-radius: 10px;
+
+  @media screen and (max-width: 768px) {
+    padding: 10px;
+  }
 `;
 
 const PersonImage = styled.div`
   img {
     border-radius: 10px;
-    width: 400px;
-    height: 350px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
     object-fit: cover;
     border: 4px solid ${({ theme }) => theme.colors.separators[6]};
+
+    @media screen and (max-width: 768px) {
+      max-width: 100%;
+      height: auto;
+    }
   }
 `;
 
 const PersonInfo = styled.div`
   text-align: left;
+  margin-top: 20px;
+
   h2 {
     font-size: 1.8rem;
     margin-bottom: 10px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
+
   p {
     margin: 5px 0;
+
     strong {
       font-size: 0.875rem;
       color: ${({ theme }) => theme.colors.accessibleText[12]};
@@ -90,6 +108,13 @@ const PersonInfo = styled.div`
 
     p {
       color: ${({ theme }) => theme.colors.accessibleText[11]};
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.875rem;
+      strong {
+        font-size: 0.75rem;
+      }
     }
   }
 `;

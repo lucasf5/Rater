@@ -39,7 +39,6 @@ const Search = () => {
 
     if (selectedGenres.length > 0 || search.length > 2) {
       api.getMovies(filters).then((response) => {
-        console.log(response.results);
         setMovies(response.results);
       });
     }

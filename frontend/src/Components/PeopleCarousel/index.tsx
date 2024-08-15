@@ -28,6 +28,24 @@ const PeopleCarousel = () => {
         spaceBetween={12}
         navigation
         loop={true}
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 8,
+          },
+          480: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 12,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 12,
+          },
+        }}
       >
         {people.slice(4).map((person, index) => (
           <SwiperSlide key={index}>
