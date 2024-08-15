@@ -1,6 +1,6 @@
 export interface Movie {
-  genre_ids: any;
-  character: ReactNode;
+  genre_ids: number[];
+  character: string;
   adult: boolean;
   backdrop_path: string;
   belongs_to_collection?: {

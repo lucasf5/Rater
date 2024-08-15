@@ -17,7 +17,7 @@ export interface KnownFor {
 }
 
 export interface Actor {
-  character: ReactNode;
+  character: string;
   adult: boolean;
   also_known_as: string[];
   biography: string;
