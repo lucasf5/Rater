@@ -5,22 +5,26 @@
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "frontend/dist"
+        "distDir": "dist"
       }
     },
     {
-      "src": "api/backend/src/index.ts",
-      "use": "@vercel/node"
+      "src": "api/backend/index.ts",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["api/backend/**/*"],
+        "maxLambdaSize": "50mb"
+      }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/backend/src/index.ts"
+      "dest": "api/backend/index.ts"
     },
     {
       "src": "/(.*)",
-      "dest": "/frontend/$1"
+      "dest": "frontend/dist/$1"
     }
   ]
 }
